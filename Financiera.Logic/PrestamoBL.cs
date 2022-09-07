@@ -7,6 +7,11 @@ namespace Financiera.Logic
 {
     public static class PrestamoBL
     {
+        public static List<Prestamo> Listar()
+        {
+            var prestamoData = new PrestamoData();
+            return prestamoData.Listar();
+        }
         public static bool Insertar(Prestamo prestamo)
         {
             prestamo.Fecha = DateTime.Today;

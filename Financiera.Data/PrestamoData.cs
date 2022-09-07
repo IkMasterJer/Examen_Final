@@ -12,6 +12,42 @@ namespace Financiera.Data
     public class PrestamoData
     {
         string cadenaConexion = "server=localhost; database=Final; integrated security=true";
+
+        public List<Prestamo> Listar()
+        {
+            var listado = new List<Prestamo>();
+            using (var conexion = new SqlConnection(cadenaConexion))
+            {
+                conexion.Open();
+                using (var comando = new SqlCommand("Select * From Prestamo", conexion))
+                {
+                    using (var lector = comando.ExecuteReader())
+                    {
+                        if (lector != null && lector.HasRows)
+                        {
+                            Prestamo Prestamo;
+                            while (lector.Read())
+                            {
+                                Prestamo = new Prestamo();
+                                Prestamo.ID = int.Parse(lector[0].ToString());
+                                Prestamo.Numero = lector[1].ToString();
+                                Prestamo.Fecha = DateTime.Parse(lector[2].ToString());
+                                Prestamo.IdCliente = int.Parse(lector[3].ToString());
+                                Prestamo.Importe = decimal.Parse(lector[4].ToString());
+                                Prestamo.Tasa = decimal.Parse(lector[5].ToString());
+                                Prestamo.Plazo = int.Parse(lector[6].ToString());
+                                Prestamo.FechaDeposito = DateTime.Parse(lector[7].ToString());
+                                Prestamo.Estado = lector[8].ToString() == "1" ? true : false;
+
+                                listado.Add(Prestamo);
+                            }
+                        }
+                    }
+                }
+            }
+            return listado;
+        }
+
         public bool Insertar(Prestamo prestamo, List<DetallePrestamo> detalles)
         {
             using (var transaccion = new TransactionScope())

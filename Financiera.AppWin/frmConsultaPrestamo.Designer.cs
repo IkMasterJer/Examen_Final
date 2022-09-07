@@ -35,19 +35,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtprestamo = new System.Windows.Forms.TextBox();
             this.txttasa = new System.Windows.Forms.TextBox();
             this.txtplazo = new System.Windows.Forms.TextBox();
             this.txtimporte = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvdatos = new System.Windows.Forms.DataGridView();
             this.colNumcouta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFvenc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInteres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPagoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cboCliente = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.cboprestamo = new System.Windows.Forms.ComboBox();
+            this.txtnombre = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdatos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnconsulta
@@ -114,13 +114,6 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Tasa de Interes";
             // 
-            // txtprestamo
-            // 
-            this.txtprestamo.Location = new System.Drawing.Point(79, 32);
-            this.txtprestamo.Name = "txtprestamo";
-            this.txtprestamo.Size = new System.Drawing.Size(141, 20);
-            this.txtprestamo.TabIndex = 7;
-            // 
             // txttasa
             // 
             this.txttasa.Location = new System.Drawing.Point(337, 142);
@@ -142,23 +135,23 @@
             this.txtimporte.Size = new System.Drawing.Size(141, 20);
             this.txtimporte.TabIndex = 10;
             // 
-            // dataGridView1
+            // dgvdatos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvdatos.AllowUserToAddRows = false;
+            this.dgvdatos.AllowUserToDeleteRows = false;
+            this.dgvdatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvdatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colNumcouta,
             this.colFvenc,
             this.colCuota,
             this.colInteres,
             this.colPagoTotal,
             this.colSaldo});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 221);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(645, 183);
-            this.dataGridView1.TabIndex = 12;
+            this.dgvdatos.Location = new System.Drawing.Point(12, 221);
+            this.dgvdatos.Name = "dgvdatos";
+            this.dgvdatos.ReadOnly = true;
+            this.dgvdatos.Size = new System.Drawing.Size(645, 183);
+            this.dgvdatos.TabIndex = 12;
             // 
             // colNumcouta
             // 
@@ -196,25 +189,32 @@
             this.colSaldo.Name = "colSaldo";
             this.colSaldo.ReadOnly = true;
             // 
-            // cboCliente
+            // cboprestamo
             // 
-            this.cboCliente.FormattingEnabled = true;
-            this.cboCliente.Location = new System.Drawing.Point(79, 101);
-            this.cboCliente.Name = "cboCliente";
-            this.cboCliente.Size = new System.Drawing.Size(371, 21);
-            this.cboCliente.TabIndex = 13;
+            this.cboprestamo.FormattingEnabled = true;
+            this.cboprestamo.Location = new System.Drawing.Point(79, 29);
+            this.cboprestamo.Name = "cboprestamo";
+            this.cboprestamo.Size = new System.Drawing.Size(252, 21);
+            this.cboprestamo.TabIndex = 13;
+            // 
+            // txtnombre
+            // 
+            this.txtnombre.Location = new System.Drawing.Point(79, 102);
+            this.txtnombre.Name = "txtnombre";
+            this.txtnombre.Size = new System.Drawing.Size(141, 20);
+            this.txtnombre.TabIndex = 14;
             // 
             // frmConsultaPrestamo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 420);
-            this.Controls.Add(this.cboCliente);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtnombre);
+            this.Controls.Add(this.cboprestamo);
+            this.Controls.Add(this.dgvdatos);
             this.Controls.Add(this.txtimporte);
             this.Controls.Add(this.txtplazo);
             this.Controls.Add(this.txttasa);
-            this.Controls.Add(this.txtprestamo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -225,7 +225,7 @@
             this.Name = "frmConsultaPrestamo";
             this.Text = "frmConsultaPrestamo";
             this.Load += new System.EventHandler(this.iniciarFormulario);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,17 +240,17 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtprestamo;
         private System.Windows.Forms.TextBox txttasa;
         private System.Windows.Forms.TextBox txtplazo;
         private System.Windows.Forms.TextBox txtimporte;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvdatos;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNumcouta;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFvenc;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCuota;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInteres;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPagoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSaldo;
-        private System.Windows.Forms.ComboBox cboCliente;
+        private System.Windows.Forms.ComboBox cboprestamo;
+        private System.Windows.Forms.TextBox txtnombre;
     }
 }

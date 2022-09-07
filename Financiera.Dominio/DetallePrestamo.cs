@@ -8,6 +8,7 @@ namespace Financiera.Dominio
         public int IdPrestamo { get; set; }
         public int NumeroCuota { get; set; }
         public decimal ImporteCuota { get; set; }
+        public decimal ImporteInteres { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public bool Estado { get; set; }
     }

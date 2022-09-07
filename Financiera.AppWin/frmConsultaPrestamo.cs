@@ -15,11 +15,13 @@ namespace Financiera.AppWin
     public partial class frmConsultaPrestamo : Form
     {
         Prestamo prestamo;
-        public frmConsultaPrestamo(Prestamo prestamo)
+        Cliente cliente;
+        DetallePrestamo detprestamo;
+        public frmConsultaPrestamo()
         {
-            this.prestamo = prestamo;
+            
             InitializeComponent();
-            cargarDatos();
+            
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -34,30 +36,47 @@ namespace Financiera.AppWin
         private void iniciarFormulario(object sender, EventArgs e)
         {
             cargarDatos();
-            btnconsulta.Visible = prestamo.ID > 0;
-           
+            if (prestamo.ID > 0)
+            {
+                asignarcontroles();
+            }
+
         }
 
         private void cargarDatos()
         {
-            var listado = ClienteBL.Listar();
-            listado.Insert(0, new Cliente
+            var listado = PrestamoBL.Listar();
+            var listadodet = DetallePrestamoBL.Listar();
+            listado.Insert(0, new Prestamo
             {
-                Nombres = "--SELECCIONE--"
+                Numero = "--SELECCIONE--"
             });
-            cboCliente.DataSource = listado;
-            cboCliente.DisplayMember = "NombreCompleto";
-            cboCliente.ValueMember = "ID";
+            cboprestamo.DataSource = listado;
+            cboprestamo.DisplayMember = "Numero";
+            cboprestamo.ValueMember = "ID";
+
+            dgvdatos.Rows.Clear();
+            foreach (var detprestamo in listadodet)
+            {
+                dgvdatos.Rows.Add(detprestamo.NumeroCuota, detprestamo.FechaVencimiento, detprestamo.ImporteCuota, detprestamo.ImporteInteres);
+            }
         }
 
-        private void asignarObjeto()
+        private void asignarcontroles()
         {
-            prestamo.IdCliente = int.Parse(cboCliente.SelectedValue.ToString());
-            prestamo.FechaDeposito = dpFechaDeposito.Value;
+            cboprestamo.SelectedValue = prestamo.Numero;
+            txtnombre.Text = prestamo.IdCliente;
+            decimal.Parse(txtimporte.Text = prestamo.Importe.ToString());
+            decimal.Parse(txtplazo.Text = prestamo.Plazo.ToString());
+            int.Parse(txttasa.Text = prestamo.Tasa.ToString());
+
+            /*prestamo.Numero = cboprestamo.SelectedValue.ToString();
+            cliente.Nombres = txtnombre.Text;
             prestamo.Importe = decimal.Parse(txtimporte.Text);
-            prestamo.Tasa = decimal.Parse(txttasa.Text);
-            prestamo.Plazo = int.Parse(txtplazo.Text);
-        }
+            prestamo.Plazo = decimal.Parse(txtplazo.Text);
+            prestamo.Tasa = int.Parse(txttasa.Text.ToString());*/
+
+        }       
 
     }
 }
